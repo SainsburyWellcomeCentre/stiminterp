@@ -3,26 +3,43 @@ name = "stiminterp"
 authors = [{name = "Sumiya Kuroda", email= "s.kuroda@ucl.ac.uk"}]
 description = "Photostimulation artifact removal via interpolation"
 readme = "README.md"
-requires-python = ">=3.11.0"
+requires-python = ">=3.10.0"
 dynamic = ["version"]
 
-dependencies = []
-
-license = "BSD-3-Clause"
-
-license-files = ["LICENSE"]
+license = {text = "BSD-3-Clause"}
 
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License",
 ]
 
+dependencies = [
+    "numpy",
+    "tifffile",
+    "matplotlib",
+    "scipy",
+    "PyYAML",
+    "fancylog",
+    "matplotlib",
+    "pandas",
+    "tqdm",
+    "scikit-learn",
+    "scikit-image",
+    "h5py",
+]
 
+[project.urls]
+"Homepage" = "https://github.com/SainsburyWellcomeCentre/stiminterp"
+"Bug Tracker" = "https://github.com/SainsburyWellcomeCentre/stiminterp/issues"
+
+"Source Code" = "https://github.com/SainsburyWellcomeCentre/stiminterp"
+"User Support" = "https://github.com/SainsburyWellcomeCentre/stiminterp/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -30,17 +47,18 @@ dev = [
   "pytest-cov",
   "coverage",
   "tox",
+  "black",
   "mypy",
   "pre-commit",
   "ruff",
-  "setuptools-scm",
+  "setuptools_scm",
 ]
 
 [build-system]
 requires = [
-    "setuptools>=77",
+    "setuptools>=45",
     "wheel",
-    "setuptools-scm[toml]>=8",
+    "setuptools_scm[toml]>=6.2",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -48,12 +66,11 @@ build-backend = "setuptools.build_meta"
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["stiminterp*"]
+include = ["derotation*"]
 exclude = ["tests", "docs*"]
 
-
 [tool.pytest.ini_options]
-addopts = "--cov=stiminterp"
+addopts = "--cov=derotation"
 filterwarnings = [
     "error",
 ]
@@ -70,7 +87,6 @@ ignore = [
   "docs/",
   "docs/source/",
 ]
-
 
 [tool.ruff]
 line-length = 79
@@ -94,26 +110,23 @@ docstring-code-format = true # Also format code in docstrings (e.g. examples)
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py{311,312,313}
+envlist = py{310,311,312}
 isolated_build = True
 
 [gh-actions]
 python =
+    3.10: py310
     3.11: py311
     3.12: py312
-    3.13: py313
 
 [testenv]
-passenv =
-    CI
-    GITHUB_ACTIONS
 extras =
     dev
 commands =
-    pytest -v --color=yes --cov=stiminterp --cov-report=xml
+    pytest -v --color=yes --cov={{cookiecutter.module_name}} --cov-report=xml
 """
-
 
 [tool.codespell]
 skip = '.git'
+ignore-words-list = "ptd"
 check-hidden = true
