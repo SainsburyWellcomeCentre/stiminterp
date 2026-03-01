@@ -70,7 +70,7 @@ include = ["derotation*"]
 exclude = ["tests", "docs*"]
 
 [tool.pytest.ini_options]
-addopts = "--cov=derotation"
+addopts = "--cov=stiminterp"
 filterwarnings = [
     "error",
 ]

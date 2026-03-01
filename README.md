@@ -36,7 +36,7 @@ With `stiminterp` you can:
 
 ## Data Source & Funding
 
-Sample data used for examples will be publiclt available in the near future.
+Sample data used for examples will be publicly available in the near future.
 
 All microscopy data has been acquired using a custom two-photon microscope by [Sumiya Kuroda](https://github.com/sumiya-kuroda) in the [Mrsic-Flogel Lab](https://www.sainsburywellcome.org/web/groups/mrsic-flogel-lab) and Dale Elgar from [COSYS Ltd.](https://www.cosys.org.uk/).
 
@@ -51,6 +51,8 @@ Previous work on artefact removal of all-optical imaging movies:
 - [Attinger et al, 2025, bioRxiv](https://www.biorxiv.org/content/10.1101/2025.10.21.683723v1)
 
 This package was inspired by [previous calcium imaging analysis pipeline at Deisseroth lab](https://github.com/deisseroth-lab/two-photon/tree/main).
+
+This repo was made using [neuroinformatics-unit/python-cookiecutter](https://github.com/neuroinformatics-unit/python-cookiecutter). See [here](https://python-cookiecutter.neuroinformatics.dev/) for more info.
 
 ------------------------------------------------------------------------
 
