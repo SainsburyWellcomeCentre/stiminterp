@@ -31,6 +31,7 @@ dependencies = [
     "tqdm",
     "scikit-learn",
     "scikit-image",
+    "scanimage-tiff-reader",
     "h5py",
 ]
 
@@ -66,7 +67,7 @@ build-backend = "setuptools.build_meta"
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["derotation*"]
+include = ["stiminterp*"]
 exclude = ["tests", "docs*"]
 
 [tool.pytest.ini_options]
