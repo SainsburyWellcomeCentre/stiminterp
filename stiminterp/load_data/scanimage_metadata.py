@@ -132,6 +132,20 @@ class ScanImageMetadata(object):
             self._n_rois = len(self.defined_rois)
         return self._n_rois
 
+    @property
+    def n_chans(self) -> int:
+        """
+        Number of channels saved in this TIFF.
+
+        ScanImage's SI.hChannels.channelSave is typically either:
+        - 1 (meaning channel 1 only), or
+        - [1, 2] (meaning channels 1 and 2)
+        """
+        ch = self.channelSave
+        if isinstance(ch, int):
+            return 1
+        return len(ch)
+
     def zs_for_roi(self, i_roi: int) -> List[int]:
         """
         Return a list of the z-values at which the specified

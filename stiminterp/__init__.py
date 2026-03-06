@@ -7,4 +7,5 @@ except PackageNotFoundError:
     pass
 
 from .stim_interpolate import remove_photostim_artefacts, StimInterpConfig
-# from .pipeline import FullPipeline
+from .load_data.scanimage_metadata import ScanImageMetadata
+from .pipeline import run_stiminterp

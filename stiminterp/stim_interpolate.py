@@ -29,7 +29,7 @@ import pandas as pd
 class StimInterpConfig:
     """Configuration for stim artefact removal."""
 
-    pad_rows: int = 1
+    pad_rows: int = 5
     require_n_good: int = 1  # nearest fill needs only 1 neighbor
 
 
