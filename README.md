@@ -36,7 +36,7 @@ With `stiminterp` you can:
 
 ## Data Source & Funding
 
-Sample data used for examples will be publicly available in the near future.
+Sample data used for examples and figures can be found on [Gin](https://gin.g-node.org/sumiya_kuroda/stiminterp_example/src/master).
 
 All microscopy data has been acquired using a custom two-photon microscope by [Sumiya Kuroda](https://github.com/sumiya-kuroda) in the [Mrsic-Flogel Lab](https://www.sainsburywellcome.org/web/groups/mrsic-flogel-lab) and Dale Elgar from [COSYS Ltd.](https://www.cosys.org.uk/).
 
