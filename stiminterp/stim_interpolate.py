@@ -45,6 +45,7 @@ def remove_photostim_artefacts(
     frame_gap: Optional[int] = None,
     num_channel: Optional[int] = None,
     cfg: Optional[StimInterpConfig] = None,
+    run_check: bool = False,
 ) -> Tuple[np.ndarray, np.ndarray, pd.DataFrame]:
     """
     Remove photostimulation artefacts by nearest-neighbor temporal filling.
@@ -69,6 +70,7 @@ def remove_photostim_artefacts(
         Number of interleaved channels in the TIFF (channel-fast ordering).
         If None, inferred as movie.shape[0] // len(df_frames).
     cfg : StimInterpConfig, optional
+    run_check: bool, whether to check the number of frames
 
     Returns
     -------
@@ -91,11 +93,6 @@ def remove_photostim_artefacts(
     if n_ttl <= 0:
         raise ValueError("df_frames is empty")
 
-    if T % n_ttl != 0:
-        raise ValueError(
-            f"movie.shape[0]={T} must be a multiple of len(df_frames)={n_ttl}."
-        )
-
     inferred_num_channel = T // n_ttl
     nchan = (
         int(num_channel)
@@ -103,10 +100,12 @@ def remove_photostim_artefacts(
         else int(inferred_num_channel)
     )
 
-    if nchan <= 0 or (n_ttl * nchan) != T:
-        raise ValueError(
-            f"movie.shape[0]={T} must be a multiple of len(df_frames)={n_ttl}."
-        )
+    if run_check:
+        if nchan <= 0 or (n_ttl * nchan) != T:
+            raise ValueError(
+                f"movie.shape[0]={T} must be a multiple of "
+                f"len(df_frames)={n_ttl}."
+            )
 
     # --- stim regions in TTL frame space ---
     df_split = _artefact_regions(df_frames, df_stims)

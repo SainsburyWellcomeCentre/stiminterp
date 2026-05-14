@@ -57,9 +57,11 @@ def find_edges(signal: np.ndarray, return_edges: str = "both"):
     rising = np.where(diff == 1)[0] + 1
     falling = np.where(diff == -1)[0] + 1
 
-    # If signal starts HIGH, first rising edge is at index 0
+    # Ignore signal starting HIGH (treat as noise, not a real rising edge)
+    # Drop the unpaired first falling edge too
     if signal[0]:
-        rising = np.insert(rising, 0, 0)
+        if len(falling) > 0:
+            falling = falling[1:]
 
     # If signal ends HIGH, final falling edge is at last index
     if signal[-1]:
