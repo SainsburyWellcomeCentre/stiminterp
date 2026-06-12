@@ -152,7 +152,10 @@ def remove_photostim_artefacts(
     # Steps 4 + 5: patch each bad TTL frame
     skipped = []
     try:
-        for bad_ttl in sorted(bad_ttl_all):
+        for i, bad_ttl in enumerate(sorted(bad_ttl_all)):
+            print(
+                f"Interpolating data loss by photostim {i}/{len(bad_ttl_all)}"
+            )
             for c in range(nchan):
                 bad_movie = bad_ttl * nchan + c
 
@@ -197,7 +200,6 @@ def remove_photostim_artefacts(
                 dinfo = np.iinfo(out.dtype)
                 corrected = np.clip(flat[bad_idx], dinfo.min, dinfo.max)
                 out[bad_movie] = corrected.reshape(Y, X).astype(out.dtype)
-
     except Exception:
         _flush_close(out)
         tmp_tif.unlink(missing_ok=True)
