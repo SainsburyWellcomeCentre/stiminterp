@@ -51,9 +51,7 @@ def run_stiminterp(
 
     # Save csv
     if save_stim_df:
-        csv_path = out_path.with_name(
-            out_path.name.replace("_corrected.tif", "_stim.csv")
-        )
+        csv_path = out_path.with_name(f"{tif_path.stem}_stim.csv")
         df_split.to_csv(csv_path, index=False)
 
     return None
